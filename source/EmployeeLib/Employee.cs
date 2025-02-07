@@ -15,13 +15,20 @@ public class Employee
     {
         ID = id;
         Name = name;
+        DepartmentID = 0;
+        Department = null;
     }
 
-    public Employee(int id, string name, int? departmentID) : this(id, name)
+    public Employee(int id, string name, int departmentID) : this(id, name)
     {
-        if (departmentID != null)
+        if (departmentID != 0)
         {
             DepartmentID = departmentID;
+        }
+        else
+        {
+            DepartmentID = 0;
+            Department = null;
         }
     }
 
@@ -31,6 +38,11 @@ public class Employee
         {
             Department = department;
             DepartmentID = department?.ID;
+        }
+        else
+        {
+            Department = null;
+            DepartmentID = 0;
         }
     }
 
