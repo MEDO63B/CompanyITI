@@ -50,7 +50,7 @@ public class Employee
     {
         Console.WriteLine($"    ID: {ID}");
         Console.WriteLine($"    Name: {Name}");
-        Console.WriteLine($"    Department: {Department.Name}");
+        Console.WriteLine($"    Department: {Department?.Name}");
     }
     public override string ToString()
     {
