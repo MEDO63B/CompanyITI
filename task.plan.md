@@ -17,10 +17,10 @@
 
 ## TODO Plan
 
-1. build classes to Hold data
+1. build classes to Hold data ✅
    1. Employee
    2. Department
-2. test classes
+2. test classes ✅
 3. build constants variables, etc.....
 4. build Data source, repositorty classes
 5. test db connection, queries

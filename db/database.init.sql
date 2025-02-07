@@ -1,4 +1,4 @@
--- [!] ( on delete is added on department reference )
+-- [!] ( on delete, on update is added on department reference )
 /*
     [♦] TODO: 
         1. Create database
@@ -6,9 +6,14 @@
         3. Insert data
 */
 
+--  clean DB
+-- use master;
+-- drop database SW_Company;
+
 create database SW_Company;
 
 use SW_Company;
+
 
 -- Tables used in the App 
 CREATE TABLE Departments
@@ -21,7 +26,7 @@ CREATE TABLE Employees
 (
     EmployeeID INT PRIMARY KEY IDENTITY,
     EmployeeName NVARCHAR(100) NOT NULL,
-    DepartmentID INT FOREIGN KEY REFERENCES Departments(DepartmentID) on delete set null
+    DepartmentID INT default null FOREIGN KEY REFERENCES Departments(DepartmentID)  on delete set null on update cascade
 );
 
 
@@ -34,7 +39,7 @@ insert into Departments (DepartmentName) values
 insert into Employees (EmployeeName, DepartmentID) values 
 ('John Smith', 1),
 ('Jane Johnson', 2),
-('Robert Brown', 3),
+('Robert Brown', null),
 ('Kathy Davis', 1),
 ('Michael Miller', 2),
 ('Sarah Taylor', 3);
@@ -50,9 +55,9 @@ select * from Employees;
 
 -- display Employees
 select 
-    * 
+    Employees.*, Departments.DepartmentName 
     from Employees join Departments
-    on Employees.DepartmentID = Departments.DepartmentID ;
+    on Employees.DepartmentID = Departments.DepartmentID;
 
 -- display Employees sorted by id asc
 select 
