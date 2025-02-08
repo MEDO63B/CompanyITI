@@ -47,6 +47,7 @@ insert into Employees (EmployeeName, DepartmentID) values
 -- test insert 
 use master;
 drop database SW_Company;
+
 use SW_Company;
 select * from Departments;
 

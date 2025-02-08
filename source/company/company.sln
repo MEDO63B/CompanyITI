@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsLib", "..\UtilsLib\Uti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryLib", "..\RepositoryLib\RepositoryLib.csproj", "{9E82753A-A7A0-4959-9265-D1141FEE4A45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queries", "..\..\test\Queries\Queries.csproj", "{3951FBC7-7302-461B-AE99-EE5625310ADC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueriesUnitTest", "..\..\test\QueriesUnitTest\QueriesUnitTest.csproj", "{3951FBC7-7302-461B-AE99-EE5625310ADC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyProgram", "CompanyProgram\CompanyProgram.csproj", "{2DD715AF-BCE0-4ADF-9997-F723E13EE650}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,5 +50,9 @@ Global
 		{3951FBC7-7302-461B-AE99-EE5625310ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3951FBC7-7302-461B-AE99-EE5625310ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3951FBC7-7302-461B-AE99-EE5625310ADC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD715AF-BCE0-4ADF-9997-F723E13EE650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD715AF-BCE0-4ADF-9997-F723E13EE650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD715AF-BCE0-4ADF-9997-F723E13EE650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD715AF-BCE0-4ADF-9997-F723E13EE650}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

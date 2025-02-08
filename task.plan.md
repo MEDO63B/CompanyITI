@@ -25,4 +25,6 @@
 4. build Data source, repositorty ( EmployeeProvider, DepartmentProvider, SQLDataProvider) classes ✅
 5. test db connection, queries ✅
 6. build menu
+   1. build menu outline with printing what will happen here
+   2. apply highlight
 7. implement menu bussines logic

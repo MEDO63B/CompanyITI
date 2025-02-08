@@ -96,7 +96,7 @@ public class SQLDataProvider : IDataProvider // apply singleton
         {
             command.Parameters.AddWithValue(key, query.Parameters[key]);
         }
-        int rows =command.ExecuteNonQuery();
+        int rows = command.ExecuteNonQuery();
 
         connection.Close();
         this.CloseConnection();
