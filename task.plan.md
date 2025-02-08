@@ -1,6 +1,6 @@
-# Employee - Department Crud App
+# 🏢Employee - Department CRUD App
 
-## P R
+## 📌Project Requirement
 
 1. Employee
 
@@ -15,14 +15,14 @@
 
 ---
 
-## TODO Plan
+## 📌TODO Plan
 
 1. build classes to Hold data ✅
    1. Employee
    2. Department
 2. test classes ✅
-3. build constants variables, etc.....
-4. build Data source, repositorty classes
+3. build constants variables, etc..... ✅
+4. build Data source, repositorty ( EmployeeProvider, DepartmentProvider, SQLDataProvider) classes
 5. test db connection, queries
 6. build menu
 7. implement menu bussines logic

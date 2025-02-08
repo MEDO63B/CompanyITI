@@ -1,0 +1,11 @@
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\bin\Debug\net8.0\UtilsLib.deps.json
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\bin\Debug\net8.0\UtilsLib.dll
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\bin\Debug\net8.0\UtilsLib.pdb
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.GeneratedMSBuildEditorConfig.editorconfig
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.AssemblyInfoInputs.cache
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.AssemblyInfo.cs
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.csproj.CoreCompileInputs.cache
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.dll
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\refint\UtilsLib.dll
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.pdb
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\ref\UtilsLib.dll

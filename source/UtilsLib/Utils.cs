@@ -6,7 +6,7 @@ public static class SQLUtils
 {
     private static string SERVER_NAME = "mute63";
     private static string DATABASE_NAME = "SW_Company";
-    public static string CONNECTION_STRING = $"Server={SERVER_NAME};Database={DATABASE_NAME};Trusted_Connection=True;";
+    public static string CONNECTION_STRING = $"Server={SERVER_NAME};Database={DATABASE_NAME};Trusted_Connection=True;TrustServerCertificate=True;";
 }
 
 public static class QueriesUtils
@@ -43,6 +43,7 @@ public static class QueriesUtils
         { "Name", "EmployeeName" },
         { "DepartmentID", "DepartmentID" }
     };
+    
 
     public static string employee = "Employees";
     public static string SELECT_ALL_Employees = $"SELECT {employee}.*, {department}.{DEPARTMENT_FIELDS["Name"]} FROM {employee} JOIN {department} ON {employee}.{EMPLOYEE_FIELDS["DepartmentID"]} = {department}.{DEPARTMENT_FIELDS["ID"]}";
