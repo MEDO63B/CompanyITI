@@ -19,9 +19,10 @@ public interface IDataProvider
 
     public List<T> SelectQuery<T>(Query query) where T : IDataReaderMapper<T>, new();
 
-    public void InsertQuery(Query query);
-    public void UpdateQuery(Query query);
-    public void DeleteQuery(Query query);
+    public int InsertQuery(Query query);
+    public int UpdateQuery(Query query);
+    public int DeleteQuery(Query query);
+    
 
 }
 
@@ -62,7 +63,7 @@ public class SQLDataProvider : IDataProvider // apply singleton
         SingleSQLConnection.closeConnection();
     }
 
-    public void DeleteQuery(Query query)
+    public int DeleteQuery(Query query)
     {
         SqlConnection connection = GetConnection();
         if(connection.State != System.Data.ConnectionState.Open)
@@ -75,12 +76,15 @@ public class SQLDataProvider : IDataProvider // apply singleton
             command.Parameters.AddWithValue(key, query.Parameters[key]);
         }
 
-        command.ExecuteNonQuery();
-        connection.Close();
+        int rows = command.ExecuteNonQuery();
 
+        connection.Close();
+        this.CloseConnection();
+
+        return rows;
     }
 
-    public void InsertQuery(Query query)
+    public int InsertQuery(Query query)
     {
         SqlConnection connection = GetConnection();
         if(connection.State != System.Data.ConnectionState.Open)
@@ -92,11 +96,15 @@ public class SQLDataProvider : IDataProvider // apply singleton
         {
             command.Parameters.AddWithValue(key, query.Parameters[key]);
         }
-        command.ExecuteNonQuery();
+        int rows =command.ExecuteNonQuery();
+
         connection.Close();
+        this.CloseConnection();
+
+        return rows;
     }
 
-    public void UpdateQuery(Query query)
+    public int UpdateQuery(Query query)
     {
         SqlConnection connection = GetConnection();
         if(connection.State != System.Data.ConnectionState.Open)
@@ -109,9 +117,12 @@ public class SQLDataProvider : IDataProvider // apply singleton
         {
             command.Parameters.AddWithValue(key, query.Parameters[key]);
         }
-        command.ExecuteNonQuery();
-        connection.Close();
+        int rows = command.ExecuteNonQuery();
 
+        connection.Close();
+        this.CloseConnection();
+
+        return rows;
     }
 
     public List<T> SelectQuery<T>(Query query) where T : IDataReaderMapper<T>, new()
@@ -140,6 +151,8 @@ public class SQLDataProvider : IDataProvider // apply singleton
                         T obj = new T().FromReader(reader);
                         result.Add(obj);
                     }
+                    connection.Close();
+                    this.CloseConnection();
                     return result;
                 }
             }
@@ -156,7 +169,7 @@ public class EmployeeDataProvider
         DataProvider = dataProvider;
     }
 
-    public List<Employee> GetEmployee(int id)
+    public Employee GetEmployee(int id)
     {
         Query query = new Query()
         {
@@ -166,7 +179,7 @@ public class EmployeeDataProvider
             }
         };
 
-        return DataProvider.SelectQuery<Employee>(query);
+        return DataProvider.SelectQuery<Employee>(query).ElementAt(0);
     }
 
     public List<Employee> GetEmployeeByName(string name)
@@ -237,7 +250,7 @@ public class EmployeeDataProvider
         return DataProvider.SelectQuery<Employee>(query);
     }
 
-    public void InsertEmployee(Employee employee)
+    public int InsertEmployee(Employee employee)
     {
         Query query = new Query()
         {
@@ -248,10 +261,10 @@ public class EmployeeDataProvider
             }
         };
 
-        DataProvider.InsertQuery(query);
+        return DataProvider.InsertQuery(query);
     }
 
-    public void UpdateEmployee(Employee employee)
+    public int UpdateEmployee(Employee employee)
     {
         Query query = new Query()
         {
@@ -263,10 +276,10 @@ public class EmployeeDataProvider
             }
         };
 
-        DataProvider.UpdateQuery(query);
+        return DataProvider.UpdateQuery(query);
     }
 
-    public void DeleteEmployee(Employee employee)
+    public int DeleteEmployee(Employee employee)
     {
         Query query = new Query()
         {
@@ -276,7 +289,7 @@ public class EmployeeDataProvider
             }
         };
 
-        DataProvider.DeleteQuery(query);
+        return DataProvider.DeleteQuery(query);
     }
 
 }
@@ -325,7 +338,7 @@ public class DepartmentDataProvider
         return DataProvider.SelectQuery<Department>(query);
     }
 
-    public void InsertDepartment(Department department)
+    public int InsertDepartment(Department department)
     {
         Query query = new Query()
         {
@@ -335,10 +348,10 @@ public class DepartmentDataProvider
             }
         };
 
-        DataProvider.InsertQuery(query);
+        return DataProvider.InsertQuery(query);
     }
 
-    public void UpdateDepartment(Department department)
+    public int UpdateDepartment(Department department)
     {
         Query query = new Query()
         {
@@ -349,10 +362,10 @@ public class DepartmentDataProvider
             }
         };
 
-        DataProvider.UpdateQuery(query);
+        return DataProvider.UpdateQuery(query);
     }
 
-    public void DeleteDepartment(Department department)
+    public int DeleteDepartment(Department department)
     {
         Query query = new Query()
         {
@@ -363,7 +376,7 @@ public class DepartmentDataProvider
             }
         };
 
-        DataProvider.DeleteQuery(query);
+        return DataProvider.DeleteQuery(query);
     }
 
     public List<Department> GetDepartmentsSortedByNameAsc()

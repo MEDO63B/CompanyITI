@@ -40,23 +40,63 @@ public class EmployeeDataProviderTests
             new Employee(5, "Michael Miller", departmentsExpected[1]),
             new Employee(6, "Sarah Taylor", departmentsExpected[2])
         };
+    
+    private readonly EmployeeDataProvider employeeDataProvider;
+    private readonly SQLDataProvider dataProvider;
 
+    public EmployeeDataProviderTests(){
+
+        dataProvider = new SQLDataProvider();
+        employeeDataProvider = new EmployeeDataProvider(dataProvider);
+    }
     [Fact]
     public void SelectAllTest()
     {
 
-        SQLDataProvider dataProvider = new SQLDataProvider();
-        EmployeeDataProvider employeeDataProvider = new EmployeeDataProvider(dataProvider);
-
         List<Employee> employeesActual = employeeDataProvider.GetEmployees();
 
         Assert.Equal(employeesExpected, employeesActual, new EmployeeComparer());
+        
+    }
+    [Fact]
+    public void SelectByIdTest()
+    {
+
+        Employee emp = employeesExpected[2];
+        Employee employeesActual = employeeDataProvider.GetEmployee(emp.ID);
+
+        Assert.Equal(emp, employeesActual, new EmployeeComparer());
+    }
+
+
+    [Fact]
+    public void InsertTest()
+    {
+
+        Employee newEmp = new Employee(0, "John Doe", departmentsExpected[2]);
+
+        Assert.Equal(1, employeeDataProvider.InsertEmployee(newEmp));
     }
 
     [Fact]
-    public void UpdateTest()
+    public void DeleteTest()
     {
-        Assert.True(true);
+
+        Employee newEmp = new Employee(7, "John Doe", departmentsExpected[2]);
+
+        Assert.Equal(1, employeeDataProvider.DeleteEmployee(newEmp));
+    }
+
+    [Fact]
+    
+    public  void UpdateTest()
+    {
+        // to update DB
+        Employee newEmp = new Employee(7, "John Doe1111", departmentsExpected[1]);
+        // to reset DB
+        // Employee newEmp = new Employee(7, "John Doe", departmentsExpected[2]);
+
+        Assert.Equal(1, employeeDataProvider.UpdateEmployee(newEmp));
     }
 }
 

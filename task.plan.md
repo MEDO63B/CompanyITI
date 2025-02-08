@@ -22,7 +22,7 @@
    2. Department
 2. test classes ✅
 3. build constants variables, etc..... ✅
-4. build Data source, repositorty ( EmployeeProvider, DepartmentProvider, SQLDataProvider) classes
-5. test db connection, queries
+4. build Data source, repositorty ( EmployeeProvider, DepartmentProvider, SQLDataProvider) classes ✅
+5. test db connection, queries ✅
 6. build menu
 7. implement menu bussines logic
