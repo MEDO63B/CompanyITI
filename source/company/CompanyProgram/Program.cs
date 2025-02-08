@@ -36,7 +36,7 @@ namespace CompanyProgram
         private static int highlight = 0;
         private static bool isExit = false;
         private enum Models { Employee = 0, Department = 1 };
-        private enum SortModels { EmployeeByIdAsc = 0, EmployeeByIdDesc = 2, DepartmentByIdAsc = 1, DepartmentByIdDesc = 3 };
+        private enum SortModels { EmployeeByIdAsc = 0, EmployeeByIdDesc = 1, EmployeeByNameAsc = 2, EmployeeByNameDesc = 3, DepartmentByIdAsc = 0, DepartmentByIdDesc = 1, DepartmentByNameAsc = 2, DepartmentByNameDesc = 3};
 
         static void Main(string[] args)
         {
@@ -331,27 +331,295 @@ namespace CompanyProgram
 
         // edit Forms
         private static void EditEmployeeForm() {
-            Console.WriteLine("Edit Employee Form");
+            /*
+                1. get all employees
+                2. select one to edit 
+                3. display edit Options
+                4. update select field 
+            */
+            Console.WriteLine("[!] Edit Employee Form.\n");
+            EmployeeDataProvider employeeDataProvider = new EmployeeDataProvider(new SQLDataProvider());
+            List<Employee> employees = employeeDataProvider.GetEmployees();
+
+            for (int i = 0; i < employees.Count; i++)
+            {
+                Console.WriteLine($"[{i+1}] {employees[i].Name}");
+            }
+            Console.WriteLine($"[{employees.Count+1}] Back.\n");
+            Console.Write("[?] Choose: ");
+            int result;
+            if(int.TryParse(Console.ReadLine(), out  result) && result > 0 && result <= employees.Count)
+            {
+                Console.WriteLine("[!] Edit Employee Form. (leave empty to skip)\n");
+                Console.WriteLine($"[=] Current Name: {employees[result-1].Name}\n");
+                Console.Write("[?] New Name: ");
+                string name = Console.ReadLine();
+                if(name != null && name != "") employees[result-1].Name = name;
+                
+                Console.WriteLine("\n-----------\n");
+
+                Console.WriteLine($"[=] Current Department: {employees[result-1].Department.Name}\n");
+                DepartmentDataProvider departmentDataProvider = new DepartmentDataProvider(new SQLDataProvider());
+                List<Department> departments = departmentDataProvider.GetDepartments();
+                for (int i = 0; i < departments.Count; i++)
+                {
+                    Console.WriteLine($"[{i+1}] {departments[i].Name}");
+                }
+                Console.WriteLine("[?] New Department: ");
+                Console.Write("[?] Choose: ");
+                int result2;
+                if(int.TryParse(Console.ReadLine(), out  result2) && result2 > 0 && result2 <= departments.Count)
+                {
+                    employees[result-1].Department = departments[result2-1];
+                    employees[result-1].DepartmentID = departments[result2 - 1].ID;
+                }
+                Employee newEmp = new Employee(employees[result-1].ID, employees[result-1].Name, employees[result-1].Department);
+                employeeDataProvider.UpdateEmployee(newEmp);
+                Console.WriteLine("\n[!] Employee Updated\n");
+                newEmp.Display();
+            }
+            else if(result == employees.Count+1)
+            {
+                Console.WriteLine("\n[!] Back... Enter to Continue\n");
+            }
         }
         private static void EditDepartmentForm() {
-            Console.WriteLine("Edit Department Form");
+            Console.WriteLine("[!] Edit Department Form.\n");
+            DepartmentDataProvider departmentDataProvider = new DepartmentDataProvider(new SQLDataProvider());
+            List<Department> departments = departmentDataProvider.GetDepartments();
+            for (int i = 0; i < departments.Count; i++)
+            {
+                Console.WriteLine($"[{i+1}] {departments[i].Name}");
+            }
+            Console.WriteLine($"[{departments.Count+1}] Back.\n");
+            Console.Write("[?] Choose: ");
+            int result;
+            if(int.TryParse(Console.ReadLine(), out  result) && result > 0 && result <= departments.Count)
+            {
+                Console.WriteLine("[!] Edit Department Form. (leave empty to skip)\n");
+                Console.WriteLine($"[=] Current Name: {departments[result-1].Name}\n");
+                Console.Write("[?] New Name: ");
+                string name = Console.ReadLine();
+                if(name != null && name != "") departments[result-1].Name = name;
+                Department newDep = new Department(departments[result-1].ID, departments[result-1].Name);
+                departmentDataProvider.UpdateDepartment(newDep);
+                Console.WriteLine("\n[!] Department Updated\n");
+                newDep.Display();
+            }
+            else if(result == departments.Count+1)
+            {
+                Console.WriteLine("\n[!] Back... Enter to Continue\n");
+            }
         }
 
         // display Forms
-        private static void DisplayEmployeeForm() {
-            Console.WriteLine("Display Employee");
+        private static void DisplayEmployeeForm()
+        {
+            Console.WriteLine("[!] Display Employee.\n");
+            Console.WriteLine("[0] All. \n[1] Search By ID.\n[2] Search By Name.\n[3] Back.\n");
+            Console.Write("[?] Choose: ");
+            int result;
+            if (int.TryParse(Console.ReadLine(), out result) && result >= 0 && result <= 3)
+            {
+                switch (result)
+                {
+                    case 0:
+                        EmployeeDataProvider employeeDataProvider = new EmployeeDataProvider(new SQLDataProvider());
+                        foreach (var employee in employeeDataProvider.GetEmployees())
+                        {
+                            employee.Display();
+                        }
+                        Console.WriteLine("===\n");
+                        break;
+                    case 1:
+                        EmployeeDataProvider employeeDataProvider2 = new EmployeeDataProvider(new SQLDataProvider());
+                        Console.Write("[?] ID: ");
+                        int id;
+                        if (int.TryParse(Console.ReadLine(), out id))
+                        {
+                            Employee employee = employeeDataProvider2.GetEmployee(id);
+
+                            employee.Display();
+
+                            Console.WriteLine("===\n");
+                        }
+                        break;
+                    case 2:
+                        EmployeeDataProvider employeeDataProvider3 = new EmployeeDataProvider(new SQLDataProvider());
+                        Console.Write("[?] Name: ");
+                        string? name = Console.ReadLine();
+                        List<Employee> employees = employeeDataProvider3.GetEmployeeByName(name);
+                        foreach (var employee in employees)
+                        {
+                            employee.Display();
+                            Console.WriteLine("===\n");
+                        }
+
+                        break;
+                    case 3:
+                        Console.WriteLine("\n[!] Back... Enter to Continue\n");
+                        break;
+                }
+            }
         }
         private static void DisplayDepartmentForm() {
-            Console.WriteLine("Display Department Form");
+            Console.WriteLine("[!] Display Department Form.\n");
+            Console.WriteLine("[0] All. \n[1] Search By ID.\n[2] Search By Name.\n[3] Back.\n");
+            Console.Write("[?] Choose: ");
+            int result;
+            if (int.TryParse(Console.ReadLine(), out result) && result >= 0 && result <= 3)
+            {
+                switch (result)
+                {
+                    case 0:
+                        DepartmentDataProvider departmentDataProvider = new DepartmentDataProvider(new SQLDataProvider());
+                        foreach (var department in departmentDataProvider.GetDepartments())
+                        {
+                            department.Display();
+                        }
+                        Console.WriteLine("===\n");
+                        break;
+                    case 1:
+                        DepartmentDataProvider departmentDataProvider2 = new DepartmentDataProvider(new SQLDataProvider());
+                        Console.Write("[?] ID: ");
+                        int id;
+                        if (int.TryParse(Console.ReadLine(), out id))
+                        {
+                            Department department = departmentDataProvider2.GetDepartment(id).ElementAt(0);
+
+                            department.Display();
+
+                            Console.WriteLine("===\n");
+                        }
+                        break;
+                    case 2:
+                        DepartmentDataProvider departmentDataProvider3 = new DepartmentDataProvider(new SQLDataProvider());
+                        Console.Write("[?] Name: ");
+                        string? name = Console.ReadLine();
+                        List<Department> departments = departmentDataProvider3.GetDepartmentByName(name);
+                        foreach (var department in departments)
+                        {
+                            department.Display();
+                            Console.WriteLine("===\n");
+                        }
+
+                        break;
+                    case 3:
+                        Console.WriteLine("\n[!] Back... Enter to Continue\n");
+                        break;
+
+                }
+            }
         }
 
         // sort Forms
         private static void SortEmployeeForm() {
-            Console.WriteLine("Sort Employee Form");
+            Console.WriteLine("[!] Sort Employee Form.\n");
+            SortDirectionForm(Models.Employee);
         }
         private static void SortDepartmentForm() {
             Console.WriteLine("Sort Department Form");
+            SortDirectionForm(Models.Department);
         }
-    
+
+        private static int SortDirectionForm(Models model) {
+            
+            Console.WriteLine("[?] Sort Direction:\n");
+            Console.WriteLine("[0] Ascending By ID.");
+            Console.WriteLine("[1] Descending By ID.");
+            Console.WriteLine("[2] Ascending By Name.");
+            Console.WriteLine("[3] Descending By Name.");
+            Console.Write("[?] Choose: ");
+            int result;
+            if(int.TryParse(Console.ReadLine(), out  result) && result >= 0 && result <= 3)
+            {
+                switch (model)
+                {
+                    case Models.Employee:
+                        switch ((SortModels)result){
+                            case SortModels.EmployeeByIdAsc:
+                                Console.WriteLine("\n[!] Ascending By ID.");
+                                EmployeeDataProvider employeeDataProvider = new EmployeeDataProvider(new SQLDataProvider());
+                                foreach (var employee in employeeDataProvider.GetEmployeesSortedByIdAsc())
+                                {
+                                    employee.Display();
+                                }
+                                Console.WriteLine("===\n");
+                                break;
+                            case SortModels.EmployeeByIdDesc:
+                                Console.WriteLine("\n[!] Descending By ID.");
+                                employeeDataProvider = new EmployeeDataProvider(new SQLDataProvider());
+                                foreach (var employee in employeeDataProvider.GetEmployeesSortedByIdDesc())
+                                {
+                                    employee.Display();
+                                }
+                                Console.WriteLine("===\n");
+                                break;
+                            case SortModels.EmployeeByNameAsc:
+                                Console.WriteLine("\n[!] Ascending By Name.");
+                                employeeDataProvider = new EmployeeDataProvider(new SQLDataProvider());
+                                foreach (var employee in employeeDataProvider.GetEmployeesSortedByNameAsc())
+                                {
+                                    employee.Display();
+                                }
+                                Console.WriteLine("===\n");
+                                break;
+                            case SortModels.EmployeeByNameDesc:
+                                Console.WriteLine("\n[!] Descending By Name.");
+                                employeeDataProvider = new EmployeeDataProvider(new SQLDataProvider());
+                                foreach (var employee in employeeDataProvider.GetEmployeesSortedByNameDesc())
+                                {
+                                    employee.Display();
+                                }
+                                Console.WriteLine("===\n");
+                                break;
+                        }
+                        break;
+                    case Models.Department:
+                        switch ((SortModels)result){
+                            case SortModels.DepartmentByIdAsc:
+                                Console.WriteLine("\n[!] Ascending By ID.");
+                                DepartmentDataProvider departmentDataProvider = new DepartmentDataProvider(new SQLDataProvider());
+                                foreach (var department in departmentDataProvider.GetDepartmentsSortedByIdAsc())
+                                {
+                                    department.Display();
+                                }
+                                Console.WriteLine("===\n");
+                                break;
+                            case SortModels.DepartmentByIdDesc:
+                                Console.WriteLine("\n[!] Descending By ID.");
+                                departmentDataProvider = new DepartmentDataProvider(new SQLDataProvider());
+                                foreach (var department in departmentDataProvider.GetDepartmentsSortedByIdDesc())
+                                {
+                                    department.Display();
+                                }
+                                Console.WriteLine("===\n");
+                                break;
+                            case SortModels.DepartmentByNameAsc:
+                                Console.WriteLine("\n[!] Ascending By Name.");
+                                departmentDataProvider = new DepartmentDataProvider(new SQLDataProvider());
+                                foreach (var department in departmentDataProvider.GetDepartmentsSortedByNameAsc())
+                                {
+                                    department.Display();
+                                }
+                                Console.WriteLine("===\n");
+                                break;
+                            case SortModels.DepartmentByNameDesc:
+                                Console.WriteLine("\n[!] Descending By Name.");
+                                departmentDataProvider = new DepartmentDataProvider(new SQLDataProvider());
+                                foreach (var department in departmentDataProvider.GetDepartmentsSortedByNameDesc())
+                                {
+                                    department.Display();
+                                }
+                                Console.WriteLine("===\n");
+                                break;
+                        }
+                        break;
+                }
+                return result;
+            }
+            return -1;
+            
+        }
     }
 }
