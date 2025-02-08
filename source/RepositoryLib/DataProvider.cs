@@ -17,7 +17,7 @@ public interface IDataProvider
 
     public void CloseConnection();
 
-    public List<T> SelectQuery<T>(Query query);
+    public List<T> SelectQuery<T>(Query query) where T : IDataReaderMapper<T>, new();
 
     public void InsertQuery(Query query);
     public void UpdateQuery(Query query);
@@ -65,6 +65,10 @@ public class SQLDataProvider : IDataProvider // apply singleton
     public void DeleteQuery(Query query)
     {
         SqlConnection connection = GetConnection();
+        if(connection.State != System.Data.ConnectionState.Open)
+        {
+            connection.Open();
+        }
         SqlCommand command = new SqlCommand(query.SqlStatment, connection);
         foreach (string key in query.Parameters!.Keys)
         {
@@ -79,6 +83,10 @@ public class SQLDataProvider : IDataProvider // apply singleton
     public void InsertQuery(Query query)
     {
         SqlConnection connection = GetConnection();
+        if(connection.State != System.Data.ConnectionState.Open)
+        {
+            connection.Open();
+        }
         SqlCommand command = new SqlCommand(query.SqlStatment, connection);
         foreach (string key in query.Parameters!.Keys)
         {
@@ -91,6 +99,11 @@ public class SQLDataProvider : IDataProvider // apply singleton
     public void UpdateQuery(Query query)
     {
         SqlConnection connection = GetConnection();
+        if(connection.State != System.Data.ConnectionState.Open)
+        {
+            connection.Open();
+        }
+
         SqlCommand command = new SqlCommand(query.SqlStatment, connection);
         foreach (string key in query.Parameters!.Keys)
         {
@@ -101,24 +114,36 @@ public class SQLDataProvider : IDataProvider // apply singleton
 
     }
 
-    public List<T> SelectQuery<T>(Query query)
+    public List<T> SelectQuery<T>(Query query) where T : IDataReaderMapper<T>, new()
     {
-        SqlConnection connection = GetConnection();
-        SqlCommand command = new SqlCommand(query.SqlStatment,connection);
-        foreach (string key in query.Parameters!.Keys)
+        using (SqlConnection connection = GetConnection())
         {
-            command.Parameters.AddWithValue(key, query.Parameters[key]);
+            if (connection.State != System.Data.ConnectionState.Open)
+            {
+                connection.Open();
+            }
+            using (SqlCommand command = new SqlCommand(query.SqlStatment, connection))
+            {
+                if (query.Parameters != null)
+                {
+                    foreach (string key in query.Parameters!.Keys)
+                    {
+                        command.Parameters.AddWithValue(key, query.Parameters[key]);
+                    }
+                }
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    List<T> result = new List<T>();
+                    while (reader.Read())
+                    {
+                        T obj = new T().FromReader(reader);
+                        result.Add(obj);
+                    }
+                    return result;
+                }
+            }
         }
-        SqlDataReader reader = command.ExecuteReader();
-        List<T> result = new List<T>();
-        while (reader.Read())
-        {
-            result.Add((T)Convert.ChangeType(reader[0], typeof(T)));
-        }
-        reader.Close();
-        connection.Close();
-        
-        return result;
     }
 
 }

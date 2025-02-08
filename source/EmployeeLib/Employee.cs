@@ -1,7 +1,9 @@
 ﻿using DepartmentLib;
+using UtilsLib;
+using Microsoft.Data.SqlClient;
 namespace EmployeeLib;
 
-public class Employee
+public class Employee : IDataReaderMapper<Employee> , IEqualityComparer<Employee>
 {
     public int ID { get; set; }
     public string? Name { get; set; }
@@ -31,7 +33,6 @@ public class Employee
             Department = null;
         }
     }
-
     public Employee(int id, string name, Department? department) : this(id, name)
     {
         if (department != null)
@@ -45,6 +46,27 @@ public class Employee
             DepartmentID = 0;
         }
     }
+    
+    public Employee FromReader(SqlDataReader reader)
+    {
+
+        int DeptID = 0;
+        Department department = null;
+
+        if (reader[QueriesUtils.EMPLOYEE_FIELDS["DepartmentID"]] != DBNull.Value)
+        {
+            DeptID = Convert.ToInt32(reader[QueriesUtils.EMPLOYEE_FIELDS["DepartmentID"]]);
+            department = new Department(DeptID, reader[QueriesUtils.DEPARTMENT_FIELDS["Name"]].ToString());
+        }
+
+        return new Employee
+        {
+            ID = Convert.ToInt32(reader[QueriesUtils.EMPLOYEE_FIELDS["ID"]]),
+            Name = reader[QueriesUtils.EMPLOYEE_FIELDS["Name"]].ToString(),
+            Department = department,
+            DepartmentID = DeptID
+        };
+    }
 
     public void Display()
     {
@@ -54,6 +76,55 @@ public class Employee
     }
     public override string ToString()
     {
+        if(Department != null) return $"ID: {ID}, Name: {Name}, DepartmentID: {DepartmentID}, Department: {Department.Name}";
         return $"ID: {ID}, Name: {Name}, DepartmentID: {DepartmentID}";
+    }
+    
+    
+    // comparer is used for testing purposes
+    public bool Equals(Employee? x, Employee? y)
+    {
+        if (x == null || y == null) return false;
+        
+        if(x.Department == null || y.Department == null) 
+        {
+            return x.ID == y.ID &&
+                    x.Name == y.Name;
+        }
+
+        return x.ID == y.ID &&
+               x.Name == y.Name &&
+               Department.Compare(x.Department, y.Department);
+    }
+
+    public int GetHashCode(Employee obj)
+    {
+        return obj.ID.GetHashCode();
+    }
+}
+
+
+
+// comparer is used for testing purposes
+public class EmployeeComparer : IEqualityComparer<Employee>
+{
+    public bool Equals(Employee? x, Employee? y)
+    {
+        if (x == null || y == null) return false;
+
+        if(x.Department == null || y.Department == null) 
+        {
+            return x.ID == y.ID &&
+                    x.Name == y.Name;
+        }
+
+        return x.ID == y.ID &&
+               x.Name == y.Name &&
+               Department.Compare(x.Department, y.Department);
+    }
+
+    public int GetHashCode(Employee obj)
+    {
+        return obj.ID.GetHashCode();
     }
 }

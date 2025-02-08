@@ -9,3 +9,7 @@ D:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\
 D:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\refint\DepartmentLib.dll
 D:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\DepartmentLib.pdb
 D:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\ref\DepartmentLib.dll
+D:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\bin\Debug\net8.0\UtilsLib.dll
+D:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\bin\Debug\net8.0\UtilsLib.pdb
+D:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\DepartmentLib.csproj.AssemblyReference.cache
+D:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\Departme.E6CE4057.Up2Date

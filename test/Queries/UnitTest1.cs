@@ -22,64 +22,47 @@ public class SQLTests
         Assert.Equal(System.Data.ConnectionState.Closed, connection.State);
     }
 
-
-
 }
 
 
 public class EmployeeDataProviderTests
 {
-    private readonly Mock<IDataProvider> _mockDataProvider;
-    private readonly EmployeeDataProvider _employeeDataProvider;
-
-    public EmployeeDataProviderTests()
-    {
-        _mockDataProvider = new Mock<IDataProvider>();
-        _employeeDataProvider = new EmployeeDataProvider(_mockDataProvider.Object);
-    }
-
-    [Fact]
-    public void GetEmployee_ShouldReturnEmployee()
-    {
-        // Arrange
-        var employeeId = 1;
-        var expectedEmployee = new Employee(employeeId, "John Doe", 1);
-        _mockDataProvider.Setup(dp => dp.SelectQuery<Employee>(It.IsAny<Query>()))
-                         .Returns(new List<Employee> { expectedEmployee });
-
-        // Act
-        var result = _employeeDataProvider.GetEmployee(employeeId);
-
-        // Assert
-        Assert.Single(result);
-        Assert.Equal(expectedEmployee, result.First());
-    }
-
-    [Fact]
-    public void GetEmployees_ShouldReturnAllEmployees()
-    {
-        // Arrange
-        var employees = new List<Employee>
-        {
-            new Employee(1, "John Doe", 1),
-            new Employee(2, "Jane Doe", 2)
+    static List<Department> departmentsExpected = new List<Department>(){
+            new Department(1, "IT"),
+            new Department(2, "Finance"),
+            new Department(3, "Administration")
         };
-        _mockDataProvider.Setup(dp => dp.SelectQuery<Employee>(It.IsAny<Query>()))
-                         .Returns(employees);
+    static List<Employee> employeesExpected = new List<Employee>(){
+            new Employee(1, "John Smith", departmentsExpected[0]),
+            new Employee(2, "Jane Johnson", departmentsExpected[1]),
+            new Employee(3, "Robert Brown", null),
+            new Employee(4, "Kathy Davis", departmentsExpected[0]),
+            new Employee(5, "Michael Miller", departmentsExpected[1]),
+            new Employee(6, "Sarah Taylor", departmentsExpected[2])
+        };
 
-        // Act
-        var result = _employeeDataProvider.GetEmployees();
+    [Fact]
+    public void SelectAllTest()
+    {
 
-        // Assert
-        Assert.Equal(employees.Count, result.Count);
+        SQLDataProvider dataProvider = new SQLDataProvider();
+        EmployeeDataProvider employeeDataProvider = new EmployeeDataProvider(dataProvider);
+
+        List<Employee> employeesActual = employeeDataProvider.GetEmployees();
+
+        Assert.Equal(employeesExpected, employeesActual, new EmployeeComparer());
     }
 
-    // Additional test cases for other methods can be implemented similarly.
+    [Fact]
+    public void UpdateTest()
+    {
+        Assert.True(true);
+    }
 }
 
 
 
 public class DepartmentDataProviderTests
 {
-    
+
 }

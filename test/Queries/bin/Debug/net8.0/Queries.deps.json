@@ -1443,6 +1443,10 @@
       },
       "xunit.runner.visualstudio/2.5.3": {},
       "DepartmentLib/1.0.0": {
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "6.0.1",
+          "UtilsLib": "1.0.0"
+        },
         "runtime": {
           "DepartmentLib.dll": {
             "assemblyVersion": "1.0.0",
@@ -1452,7 +1456,9 @@
       },
       "EmployeeLib/1.0.0": {
         "dependencies": {
-          "DepartmentLib": "1.0.0"
+          "DepartmentLib": "1.0.0",
+          "Microsoft.Data.SqlClient": "6.0.1",
+          "UtilsLib": "1.0.0"
         },
         "runtime": {
           "EmployeeLib.dll": {
@@ -1476,6 +1482,9 @@
         }
       },
       "UtilsLib/1.0.0": {
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "6.0.1"
+        },
         "runtime": {
           "UtilsLib.dll": {
             "assemblyVersion": "1.0.0",

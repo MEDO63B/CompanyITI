@@ -13,3 +13,5 @@ D:\Personal Data\learn\ITI\dotNet\project\source\EmployeeLib\obj\Debug\net8.0\Em
 D:\Personal Data\learn\ITI\dotNet\project\source\EmployeeLib\obj\Debug\net8.0\refint\EmployeeLib.dll
 D:\Personal Data\learn\ITI\dotNet\project\source\EmployeeLib\obj\Debug\net8.0\EmployeeLib.pdb
 D:\Personal Data\learn\ITI\dotNet\project\source\EmployeeLib\obj\Debug\net8.0\ref\EmployeeLib.dll
+D:\Personal Data\learn\ITI\dotNet\project\source\EmployeeLib\bin\Debug\net8.0\UtilsLib.dll
+D:\Personal Data\learn\ITI\dotNet\project\source\EmployeeLib\bin\Debug\net8.0\UtilsLib.pdb

@@ -45,6 +45,7 @@ insert into Employees (EmployeeName, DepartmentID) values
 ('Sarah Taylor', 3);
 
 -- test insert 
+use SW_Company;
 select * from Departments;
 
 select * from Employees;
@@ -56,7 +57,7 @@ select * from Employees;
 -- display Employees
 select 
     Employees.*, Departments.DepartmentName 
-    from Employees join Departments
+    from Employees left join Departments
     on Employees.DepartmentID = Departments.DepartmentID;
 
 -- display Employees sorted by id asc

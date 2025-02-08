@@ -25,7 +25,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Personal Data\\learn\\ITI\\dotNet\\project\\source\\UtilsLib\\UtilsLib.csproj": {
+                "projectPath": "D:\\Personal Data\\learn\\ITI\\dotNet\\project\\source\\UtilsLib\\UtilsLib.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -42,6 +46,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -86,6 +96,9 @@
             "projectReferences": {
               "D:\\Personal Data\\learn\\ITI\\dotNet\\project\\source\\DepartmentLib\\DepartmentLib.csproj": {
                 "projectPath": "D:\\Personal Data\\learn\\ITI\\dotNet\\project\\source\\DepartmentLib\\DepartmentLib.csproj"
+              },
+              "D:\\Personal Data\\learn\\ITI\\dotNet\\project\\source\\UtilsLib\\UtilsLib.csproj": {
+                "projectPath": "D:\\Personal Data\\learn\\ITI\\dotNet\\project\\source\\UtilsLib\\UtilsLib.csproj"
               }
             }
           }
@@ -104,6 +117,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -236,6 +255,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

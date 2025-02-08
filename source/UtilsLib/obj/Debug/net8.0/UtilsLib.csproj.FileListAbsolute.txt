@@ -9,3 +9,4 @@ D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\Utils
 D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\refint\UtilsLib.dll
 D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.pdb
 D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\ref\UtilsLib.dll
+D:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.csproj.AssemblyReference.cache
