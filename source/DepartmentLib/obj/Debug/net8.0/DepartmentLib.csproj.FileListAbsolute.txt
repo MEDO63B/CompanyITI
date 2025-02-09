@@ -1,0 +1,16 @@
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\bin\Debug\net8.0\DepartmentLib.deps.json
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\bin\Debug\net8.0\DepartmentLib.dll
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\bin\Debug\net8.0\DepartmentLib.pdb
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\bin\Debug\net8.0\UtilsLib.dll
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\bin\Debug\net8.0\UtilsLib.pdb
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\DepartmentLib.csproj.AssemblyReference.cache
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\DepartmentLib.GeneratedMSBuildEditorConfig.editorconfig
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\DepartmentLib.AssemblyInfoInputs.cache
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\DepartmentLib.AssemblyInfo.cs
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\DepartmentLib.csproj.CoreCompileInputs.cache
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\DepartmentLib.sourcelink.json
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\Departme.E6CE4057.Up2Date
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\DepartmentLib.dll
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\refint\DepartmentLib.dll
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\DepartmentLib.pdb
+d:\Personal Data\learn\ITI\dotNet\project\source\DepartmentLib\obj\Debug\net8.0\ref\DepartmentLib.dll

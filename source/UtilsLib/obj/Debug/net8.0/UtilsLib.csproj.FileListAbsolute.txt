@@ -1,0 +1,13 @@
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\bin\Debug\net8.0\UtilsLib.deps.json
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\bin\Debug\net8.0\UtilsLib.dll
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\bin\Debug\net8.0\UtilsLib.pdb
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.csproj.AssemblyReference.cache
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.GeneratedMSBuildEditorConfig.editorconfig
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.AssemblyInfoInputs.cache
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.AssemblyInfo.cs
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.csproj.CoreCompileInputs.cache
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.sourcelink.json
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.dll
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\refint\UtilsLib.dll
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\UtilsLib.pdb
+d:\Personal Data\learn\ITI\dotNet\project\source\UtilsLib\obj\Debug\net8.0\ref\UtilsLib.dll
