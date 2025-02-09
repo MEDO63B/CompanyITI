@@ -1,14 +1,17 @@
 # ITI Company
 
-`<img src='https://images.app.goo.gl/1gd8VRDF8vBoXajj7'>`
 
-![Dot net 8 logo](https://images.app.goo.gl/1gd8VRDF8vBoXajj7)
+<p align="center" style="display:flex; justify-content:flex-start; gap: 1.5em; margin-left: 2em;">
+  <img src="https://www.aumerial.com/images/articles/article-dotnet-8/header.webp" alt="Dot Net 8 Logo" width="100" height="50" >
+<img src="https://cdn.freebiesupply.com/logos/large/2x/microsoft-sql-server-logo-png-transparent.png" alt="My Image" width="100" height="50"> 
+</p>
 
 
 ## How To Install Project
 
-1. clone Repo ` git clone https://github.com/MEDO63B/CompanyITI.git`
-2. visit `project\source\UtilsLib\Utils.cs` and update connection string in **SQLUtils** Class
+clone Repo ` git clone https://github.com/MEDO63B/CompanyITI.git`
+
+1. visit `project\source\UtilsLib\Utils.cs` and update connection string in **SQLUtils** Class
 3. visit `project\db\database.init.sql` run
    1. `create database SW_Company;`
    2. `use SW_Company;`
